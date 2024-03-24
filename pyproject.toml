@@ -1,0 +1,29 @@
+[tool.poetry]
+name = "chtsh"
+version = "0.1.0"
+description = ""
+authors = ["Thiago Pacheco <thiagodelimapacheco@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+pytest = "^8.1.1"
+langchain-community = "^0.0.29"
+langchain-core = "^0.1.33"
+poetry-dotenv = "^0.4.0"
+langchain = "^0.1.13"
+google-search-results = "^2.4.2"
+poetry-dotenv-plugin = "^0.2.0"
+langchainhub = "^0.1.15"
+openai = "^1.14.2"
+langchain-openai = "^0.1.1"
+langchain-experimental = "^0.0.55"
+click = "^8.1.7"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.scripts]
+start = "chtsh.main:main"
