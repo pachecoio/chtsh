@@ -7,11 +7,7 @@ def main():
 
 
 @click.command()
-@click.option(
-    "--prompt",
-    "-p",
-    help="The prompt to use for the query",
-)
+@click.argument("prompt")
 def command(prompt):
     coding_query(prompt)
 
