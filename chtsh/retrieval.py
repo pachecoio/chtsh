@@ -36,6 +36,11 @@ def coding_query(input, llm_factory=chat_openai):
     prompt = hub.pull("hwchase17/openai-functions-agent")
     agent = create_openai_functions_agent(llm, tools, prompt)
     agent_executor = AgentExecutor(agent=agent, tools=tools)
-    for chunk in agent_executor.stream({"input": input}):
-        print(chunk["output"], end="", flush=True)
+    result = agent_executor.invoke({"input": input})
+    if 'output' in result:
+        stream_output(result['output'])
 
+
+def stream_output(output: str):
+    for line in output.split('\n'):
+        print(line)
