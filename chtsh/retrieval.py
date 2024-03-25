@@ -1,3 +1,4 @@
+from langchain_core.runnables import RunnableConfig
 from langchain_openai import ChatOpenAI
 from langchain import hub
 from langchain.agents import create_openai_functions_agent, load_tools
@@ -34,6 +35,7 @@ def coding_query(input, llm_factory=chat_openai):
     llm = llm_factory()
     prompt = hub.pull("hwchase17/openai-functions-agent")
     agent = create_openai_functions_agent(llm, tools, prompt)
-    agent_executor = AgentExecutor(agent=agent, tools=tools, verbose=True)
-    return agent_executor.invoke({"input": input})
+    agent_executor = AgentExecutor(agent=agent, tools=tools)
+    for chunk in agent_executor.stream({"input": input}):
+        print(chunk["output"], end="", flush=True)
 
